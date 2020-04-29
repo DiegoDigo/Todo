@@ -8,4 +8,9 @@
       <ProjectReference Include="..\Todo.Shared\Todo.Shared.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="9.0.0" />
+      <PackageReference Include="Flunt" Version="1.0.5" />
+    </ItemGroup>
+
 </Project>

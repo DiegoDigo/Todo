@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Todo.Domain.TodoConext.Entities;
 using Todo.Domain.UserContext.Entities.Enums;
 using Todo.Shared.Entities;
+using Todo.Shared.Util;
 using Todo.Shared.ValuesObjects;
 
 namespace Todo.Domain.UserContext.Entities
@@ -23,6 +23,17 @@ namespace Todo.Domain.UserContext.Entities
             Email = email;
             Password = password;
             Role = role;
+        }
+        
+        
+        public void ChooseRole(ERole role)
+        {
+            Role = role;
+        }
+        
+        public void EncryptPassword()
+        {
+            Password = PasswordUtil.Hash(Password);
         }
     }
 }

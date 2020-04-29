@@ -24,6 +24,9 @@ namespace Todo.Api
             services.AddRepositories(Configuration);
             
             services.AddControllers();
+            
+            services.AddAutoMapper();
+            services.AddHandler();
         }
 
         

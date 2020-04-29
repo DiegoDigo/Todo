@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Todo.Domain.UserContext.Reposirtories;
 using Todo.Infra.Context;
+using Todo.Infra.Repositories;
 
 namespace Todo.Api.Configuration
 {
@@ -17,6 +19,7 @@ namespace Todo.Api.Configuration
             });
 
             services.AddScoped<TodoDbContext, TodoDbContext>();
+            services.AddTransient<IUserRepository, UserRepository>();
 
             return services;
         }
