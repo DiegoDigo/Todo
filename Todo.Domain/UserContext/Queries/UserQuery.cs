@@ -8,7 +8,7 @@ namespace Todo.Domain.UserContext.Queries
     {
         public static Expression<Func<User, bool>> FindByEmail(string email)
         {
-            return x => x.Email.Address.Equals(email);
+            return x => x.Email.Address == email;
         }
         
         public static Expression<Func<User, bool>> FindById(Guid id)

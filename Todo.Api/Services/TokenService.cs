@@ -2,28 +2,17 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Todo.Domain.Services;
 using Todo.Domain.UserContext.Entities;
 using Todo.Shared.Configuration;
 
 namespace Todo.Api.Services
 {
-    public class TokenService
+    public class TokenService : ITokenService
     {
-
-        private readonly IConfiguration _configuration;
-
-        public TokenService(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
-
         public string GenerateToken(User user)
         {
-
-            _configuration.GetSection("Security");
-            
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(Constant.SecrectKey);
             var tokenDescriptor = new SecurityTokenDescriptor

@@ -7,5 +7,6 @@ namespace Todo.Domain.UserContext.Repositories
     {
         Task Create(User user);
         Task<bool> ExistEmail(string email);
+        Task<User> FindUserByEmail(string email);
     }
 }

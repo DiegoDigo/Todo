@@ -26,5 +26,21 @@ namespace Todo.Api.Controller
             var resp = await _userHandler.Handler(command);
             return resp.Success ? StatusCode(201, resp) : BadRequest(resp);
         }
+
+
+        [HttpPost("login"), ApiVersion("1.0")]
+        [ProducesResponseType((int) HttpStatusCode.Created)]
+        [ProducesResponseType((int) HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int) HttpStatusCode.NotFound)]
+        public async Task<ActionResult<CommandResult>> SignIn([FromBody] SignInCommand command)
+        {
+            var resp = await _userHandler.Handler(command);
+            if (resp.Success)
+            {
+                return StatusCode(200, resp);
+            }
+
+            return resp.Content == null ? StatusCode(404, resp) : BadRequest(resp);
+        }
     }
 }

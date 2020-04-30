@@ -30,6 +30,8 @@ namespace Todo.Api
             services.AddHandler();
             services.AddSwagger();
 
+            services.AddServices();
+
             services.AddAuthenticationJwt();
         }
 
