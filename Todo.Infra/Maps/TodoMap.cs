@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Todo.Domain.TodoConext.Entities;
+using Todo.Domain.TodoContext.Entities;
 
 namespace Todo.Infra.Maps
 {
@@ -11,16 +11,13 @@ namespace Todo.Infra.Maps
             builder.ToTable("Todo");
             builder.HasKey("Id");
             builder.Property(x => x.Title).IsRequired().HasColumnType("varchar(20)");
-            builder.Property(x => x.Description).IsRequired().HasColumnType("varchar(150)");
+            builder.Property(x => x.Description).HasColumnType("varchar(150)");
             builder.Property(x => x.Done).IsRequired().HasColumnType("boolean");
             builder.Property(x => x.Deadline).IsRequired().HasColumnType("boolean");
             builder.Property(x => x.CreateDate).IsRequired().HasColumnType("timestamp");
             builder.Property(x => x.EndingDate).IsRequired().HasColumnType("timestamp");
             builder.Property(x => x.CompletionDate).HasColumnType("timestamp");
-            builder.HasOne(x => x.User)
-                .WithMany(x => x.TodoItems)
-                .HasForeignKey(fk => fk.UserId);
-
+            builder.Property(x => x.UserId).IsRequired().HasMaxLength(150).HasColumnType("varchar(150)");
         }
     }
 }

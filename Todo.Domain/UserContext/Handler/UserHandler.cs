@@ -63,6 +63,11 @@ namespace Todo.Domain.UserContext.Handler
 
             var user = await _userRepository.FindUserByEmail(command.Email);
 
+            if (user == null)
+            {
+                return new CommandResult(false, "Usuario nao existe.", null);
+            }
+
             if (!PasswordUtil.Verify(command.Password, user.Password))
             {
                 return new CommandResult(false, "Usuario ou senha invalido.", null);

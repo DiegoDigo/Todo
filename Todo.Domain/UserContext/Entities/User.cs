@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Todo.Domain.TodoConext.Entities;
+using Todo.Domain.TodoContext.Entities;
 using Todo.Domain.UserContext.Entities.Enums;
 using Todo.Shared.Entities;
 using Todo.Shared.Util;

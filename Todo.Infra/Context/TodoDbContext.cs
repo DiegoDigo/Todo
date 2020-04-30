@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Todo.Domain.TodoConext.Entities;
+using Todo.Domain.TodoContext.Entities;
 using Todo.Domain.UserContext.Entities;
 using Todo.Infra.Maps;
 

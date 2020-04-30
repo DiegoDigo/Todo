@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Todo.Domain.UserContext.Entities;
@@ -23,9 +24,13 @@ namespace Todo.Infra.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> ExistEmail(string email) => await _context.Users.AsNoTracking().AnyAsync(UserQuery.FindByEmail(email));
+        public async Task<bool> ExistEmail(string email) =>
+            await _context.Users.AsNoTracking().AnyAsync(UserQuery.FindByEmail(email));
 
         public async Task<User> FindUserByEmail(string email) =>
             await _context.Users.AsNoTracking().Where(UserQuery.FindByEmail(email)).FirstOrDefaultAsync();
+
+        public async Task<User> FindUserById(Guid id) =>
+            await _context.Users.AsNoTracking().Where(UserQuery.FindById(id)).FirstOrDefaultAsync();
     }
 }
