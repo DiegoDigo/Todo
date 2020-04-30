@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Todo.Domain.UserContext.Reposirtories;
+using Todo.Domain.UserContext.Repositories;
 using Todo.Infra.Context;
 using Todo.Infra.Repositories;
 

@@ -1,16 +1,17 @@
 ﻿using System.Threading.Tasks;
 using AutoMapper;
+using Flunt.Notifications;
 using Todo.Domain.UserContext.Command.Input;
 using Todo.Domain.UserContext.Command.Output;
 using Todo.Domain.UserContext.Entities;
 using Todo.Domain.UserContext.Entities.Enums;
-using Todo.Domain.UserContext.Reposirtories;
+using Todo.Domain.UserContext.Repositories;
 using Todo.Shared.Command;
 using Todo.Shared.Handler;
 
 namespace Todo.Domain.UserContext.Handler
 {
-    public class UserHandler : IHandler<CreateNewUserCommand>
+    public class UserHandler : Notifiable, IHandler<CreateNewUserCommand>
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
@@ -27,6 +28,12 @@ namespace Todo.Domain.UserContext.Handler
             if (command.Invalid)
             {
                 return new CommandResult(false, "Ops, erro ao criar o usuario.", command.Notifications);
+            }
+
+            if (await _userRepository.ExistEmail(command.Email))
+            {
+                AddNotification("Email", "O Email já cadastrado.");
+                return new CommandResult(false, "Ops, erro ao criar o usuario.", Notifications); 
             }
 
             var user = _mapper.Map<User>(command);
